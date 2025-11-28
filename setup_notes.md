@@ -37,3 +37,6 @@ Followed the directions [from reddit](https://www.reddit.com/r/neovim/comments/1
 * Looking into version managers. There are a couple specific to zig, found `zigenv` and `zvm`, but both are zig specific and this is a common enough problem I'm hoping to just have one tool. Decided that I don't need that right now and am just going to use homebrew. Done.
 * I figured out why conditional spell checking wasn't working... I was setting `vim.opt_local.spell=false` when I meant true. 
 * Was about to start configuring zig tooling but I decided I'd rather use the modularized version of kickstart, one big file is a sad choice. Switching to the modular one is the next thing to do. Then setup zig tooling.
+
+### 2025-11-27
+* Nuked the old repository, forked again from (modular kickstart repo)[https://github.com/dam9000/kickstart-modular.nvim], and moved my notes, cheat sheet, and spelling config over.
