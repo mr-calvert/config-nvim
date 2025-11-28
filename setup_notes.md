@@ -24,6 +24,15 @@ Generally following (nvim's kickstart)[https://github.com/nvim-lua/kickstart.nvi
 - Added the key to the running ssh-agent and setup the passphrase in the apple keychain.
 - Forked nvim-lua/kickstart.nvim into my own github and cloned that into ~/.config/nvim
 
+# go-lang setup
+* `brew install go` on personal laptop
+* TODO: d/l a go-lang repo
+* TODO: activate tree-sitter and confirm what I should expect for it (does it support anything with telescope)
+* TODO: install/activate go's lsp, plumb the depths of what it enables, especially interaction with telescope, refactorings, compile errors in quickfix?
+* TODO: explore, and get baseline config for test execution integration, esp with quickfix (or trouble?) jump to failures
+* TODO: configure easy go fmt, lint, any other tools?
+* TODO: integrate debugger
+
 # Setup effort notes by date
 ## 2025-11-19
 ### Spelling
@@ -40,3 +49,6 @@ Followed the directions [from reddit](https://www.reddit.com/r/neovim/comments/1
 
 ### 2025-11-27
 * Nuked the old repository, forked again from (modular kickstart repo)[https://github.com/dam9000/kickstart-modular.nvim], and moved my notes, cheat sheet, and spelling config over.
+* Installed go with homebrew
+* Was struggling with todo comments, they just didn't seem to work when I typed things. I was typing "TODO" but it turns out that there has to be a trailing colon, so "TODO:" not "TODO".
+* I got thrown for a loop, wanted to do a live grep but I couldn't find it in the menu of options when I did "[leader]s" while editing this file. But then it was there when I was editing lua. I did find "[leader]sg" was live grep and I tried it inside this file and it worked. Not sure what's up.
