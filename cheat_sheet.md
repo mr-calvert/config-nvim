@@ -32,3 +32,8 @@ All are off <C-w>... so just start with it and use telescope
 | --- | --- |
 | :Inspect | Treesitter annotations for cursor location |
 | :InspectTree | Split window with treesitter's tag tree centered at cursor |
+
+# LSP
+| keymap | description |
+| --- | --- |
+| grd | Goto definition |

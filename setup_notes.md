@@ -3,6 +3,18 @@ The goal of these notes are to:
 * Make my setup reproducible
 * Keep track of what I learn about nvim hacking because my memory is leaky
 
+## Philosophy of external tool management
+Initially at least I've taken the attitude that I don't want my editor (vscode, jetbrains, nvim, whatever) to own my language tooling; I'd like all that stuff to be on standard paths and work on the command line as a peer to the IDE/editor. That is with the exception of language servers. Those are tied tightly enough to the editor/IDE I'm fine having the editor manage it.
+
+Currently I'm leaning on homebrew on Macs for tooling management. We'll see how that goes.
+
+# TODO configurations, research, languages
+* Folding configuration esp wrt treesitter
+* Zig
+* Rust
+* cpp
+* python
+
 # Setup by topic/language
 ## Initial installation
 ### MacOS
@@ -26,13 +38,19 @@ Generally following (nvim's kickstart)[https://github.com/nvim-lua/kickstart.nvi
 
 # go-lang setup
 * `brew install go` on personal laptop
-* TODO: activate tree-sitter and confirm what I should expect for it (does it support anything with telescope)
-* TODO: install/activate go's lsp, plumb the depths of what it enables, especially interaction with telescope, refactorings, compile errors in quickfix?
+* Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is find for me, curious if that will cause problems with tooling. 
 * TODO: explore, and get baseline config for test execution integration, esp with quickfix (or trouble?) jump to failures
 * TODO: configure easy go fmt, lint, any other tools?
 * TODO: integrate debugger
+* TODO: plumb the depths of gopls support, especially interaction with telescope, refactorings, compile errors in quickfix?
+
 
 # Setup effort notes by date
+### 2025-11-28
+* A bit of research into nvim roadmap. Builtin lsp integration is coming in 0.12.x, but stable is 11.5.x, so the kickstart lsp stuff is still fully relevant.
+* Added go to lua/kickstart/plugins/treesitter.lua, played around with treesitter integration using fzf go source code. Need to come back to learn about folds and indenting features
+* Added gopls to `local servers` in `lspconfig.lua` and it just worked. There are some keybindings for LSP that are mostly off `gr`
+
 ### 2025-11-27
 * Nuked the old repository, forked again from (modular kickstart repo)[https://github.com/dam9000/kickstart-modular.nvim], and moved my notes, cheat sheet, and spelling config over.
 * Installed go with homebrew
