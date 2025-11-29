@@ -71,6 +71,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Turn on editeorconfig support globally
+vim.g.editorconfig = true
+
 -- Enable spell checking on spell_types files
 local spell_types = { 'text', 'plaintext', 'gitcommit', 'markdown', 'md' }
 vim.opt.spell = false

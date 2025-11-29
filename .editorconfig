@@ -1,0 +1,56 @@
+# See documentation at https://editorconfig.org
+# sic: Until I build a dotfiles repo this will live in the nvim repo. The intention is to copy
+# from its home at ~/.config/nvim up one level to cover all dotfiles. Also to copy to ~/code/ to 
+# set sane project defaults
+
+# top-most EditorConfig file
+root = true
+
+# Sane defaults with a bit of opinion.
+# max_line_length works for my tooling, likely to change in projects
+# insert_final_newline is directly against Splunk coding standards, but makes sense as a default
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 120
+insert_final_newline = true
+
+[*.lua]
+indent_style = space
+indent_size = 2
+tab_width = 2
+insert_final_newline = false
+
+[*.go]
+indent_style = tab
+indent_size = 8
+tab_width = 8
+insert_final_newline = false
+
+[*.zig]
+indent_stype = space
+indent_size = 4
+tab_width = 4
+insert_final_newline = false
+
+[*.rust]
+indent_stype = space
+indent_size = 4
+tab_width = 4
+insert_final_newline = false
+
+# matching syntax examples:
+# ============================================================================== 
+# Match all files with .py extension
+# [*.py]
+# Multi-match js and py
+# [*.{js,py}]
+# Match files by exact name
+# [{package.json,.travis.yml}]
+# Glob matching -- all *.js files under the lib directory
+# [lib/**.js]
