@@ -38,7 +38,7 @@ Generally following (nvim's kickstart)[https://github.com/nvim-lua/kickstart.nvi
 
 # go-lang setup
 * `brew install go` on personal laptop
-* Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is find for me, curious if that will cause problems with tooling. 
+* Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is fine for me, curious if that will cause problems with tooling. 
 * TODO: explore, and get baseline config for test execution integration, esp with quickfix (or trouble?) jump to failures
 * TODO: configure easy go fmt, lint, any other tools?
 * TODO: integrate debugger
@@ -50,6 +50,7 @@ Generally following (nvim's kickstart)[https://github.com/nvim-lua/kickstart.nvi
 * A bit of research into nvim roadmap. Builtin lsp integration is coming in 0.12.x, but stable is 11.5.x, so the kickstart lsp stuff is still fully relevant.
 * Added go to lua/kickstart/plugins/treesitter.lua, played around with treesitter integration using fzf go source code. Need to come back to learn about folds and indenting features
 * Added gopls to `local servers` in `lspconfig.lua` and it just worked. There are some keybindings for LSP that are mostly off `gr`
+* Enabled DAP (debugger access protocol) by uncommenting the line enabling debug.lua. I wasn't able to get it running against fzf, but I built a hello world and the debugger worked. Lots to learn about DAP.
 
 ### 2025-11-27
 * Nuked the old repository, forked again from (modular kickstart repo)[https://github.com/dam9000/kickstart-modular.nvim], and moved my notes, cheat sheet, and spelling config over.

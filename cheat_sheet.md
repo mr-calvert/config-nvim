@@ -37,3 +37,15 @@ All are off <C-w>... so just start with it and use telescope
 | keymap | description |
 | --- | --- |
 | grd | Goto definition |
+| gra | Goto code actions |
+
+# DAP
+| keymap | description |
+| --- | --- |
+| <F5> | Start code running in debugger / Continue |
+| <F1> | Step Into |
+| <F2> | Step Over |
+| <F3> | Step Out |
+| <F7> | Tottle DAP UI on/off |
+| [leader]b | Create unconditional breakpoint at cursor |
+| 
