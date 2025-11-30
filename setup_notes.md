@@ -6,22 +6,26 @@ The goal of these notes are to:
 ## Philosophy of external tool management
 Initially at least I've taken the attitude that I don't want my editor (vscode, jetbrains, nvim, whatever) to own my language tooling; I'd like all that stuff to be on standard paths and work on the command line as a peer to the IDE/editor. The exception is language servers. Those are tied tightly enough to the editor/IDE I'm fine having the editor manage it.
 
-Currently I'm leaning on homebrew on Macs for tooling management. We'll see how that goes.
+Currently I'm leaning on homebrew on Macs for tooling management. We'll see how that goes. *rust* is managed via rustup
+installed fully manually on MacOS. Would be interesting to see how best to do it for automatic vworkstation
+configuration.
 
 ## Squawk Sheet
 * gotestsum didn't download/install
-* nvim-treesitter.configs not found error whenever nvim starts
-* error when typing a live file system path in backtics
+* rust-analyzer seems to require a save to update the parse, others didn't. Not sure why, but it's slightly annoying
 
 # TODO configurations, research, languages, puzzles
-* Zig
-* Rust
-* Folding configuration esp driven by treesitter
+* Try to deploy on work laptop
 * Configure nvim with a keymap to close a buffer without killing the window it's in to keep my window configuration
-* cpp
-* python
+* Autosave?
 * Give some love to the key bindings. I like [leader][functional area][specific function] as a pattern. Testing under
   [leader]t is ok, but there's a bunch of cruft rn. [leader]s is good. gr? for LSP stuff makes no sense.
+* Setup zig source level debugging via codelldb. codelldb is a vscode extension, you need to install vscode then the
+  extension, then grab it from vscode's private internals. See (old but comprehensive blog
+  post)[https://eliasdorneles.com/til/posts/customizing-neovim-debugging-highlight-zig-debug-w-codelldb/] on the topic.
+* Folding configuration esp driven by treesitter
+* cpp
+* python
 * `delve` = go-lang debugger is currently installed via mason in `~/.config/nvim/lua/kickstart/plugins/debug.lua`, try
   to remove it and install via homebrew
 
@@ -47,19 +51,36 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
 - Setup ~/.ssh/config to auto-load the key into MacOS's built-in ssh-agent per (github instructions)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent]
 - Added the key to the running ssh-agent and setup the passphrase in the apple keychain.
 
-# go-lang setup
+## go-lang setup
 * `brew install go` on personal laptop
 * Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is fine for me, curious if that will cause problems with tooling.
-* TODO: figure out where delve is coming from
 * TODO: configure easy go fmt, lint, any other tools?
 * TODO: plumb the depths of gopls support, especially interaction with telescope, refactorings, compile errors in quickfix?
 
-# zig setup
+## zig setup
 * `brew install zig zls`
 * `brew install tree-sitter-cli` -- zig's treesitter grammar isn't precompiled
 * In nvim `:TSInstall zig`
 
+## rust setup
+* (*USE RUSTUP*)[https://rust-lang.org/tools/install/] -- this page pipes curl output to `sh`. No. Write it to disk,
+  read it, then run it. Bloody hell do they think we were born yesterday??
+* :TSInstall rust
+
+
 # Setup effort notes by date
+## 2025-11-30
+### Rust setup
+* Discovered I have rustup already installed (no surprise really). For rust rustup is the way to go.
+* Manual installation of rust treesitter
+* Just uncommented the example in `~/.config/nvim/lua/kickstart/plugins/lspconfig.lua`. rust-analyzer immediately kicked
+  in, but it doesn't run on code edits, just on :w. Seems reasonable since it's expensive, but I'll want to see about
+  configuring that (added a squawk), or pairing with autosave, that I probably want anyway.
+* Just like zig, since rust is an llvm language it uses codelldb as a DAP adapter for lldb. Still looks like I'll have
+  to lean on VSCode to install it and then link to the binary. Not sure how I'll do that on vworkstation though.
+
+### Zig setup
+* Timeboxed source level debugging, added as a separate todo because it involves stealing a DAP adapter from VSCode.
 
 ## 2025-11-29
 ### Setup Zig support
@@ -70,6 +91,7 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
   to build the grammar, but treesitter cli is not installed.
 * Couldn't figure out how to get treesitter to auto install parsers from the configuration. I'm curious what it does on
   a new installation. Timeboxing this effort and just planning on :TSInstall zig
+* Setup zls (zig language server) in lspconfig, worked right away.
 
 ### Continue focus on go-lang setup
 * Created .editorconfig and enabled Editorconfig support in nvim. Intention is to have it setup in dotfiles when I get around to that part of my setup.
