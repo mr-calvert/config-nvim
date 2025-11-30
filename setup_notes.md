@@ -62,6 +62,9 @@ like `master` is checked out.
   there's a runtime error when I open a path with backtick. This used to supply tab completion vs filesystem, now it
   breaks.
 * Confirmed that LSP works for go-hello and DAP can step through prod side, tests obviously not.
+* First pass at neotest setup with nvim-neotest-go and gotestsum. There was an error related to nvim-treesitter.configs,
+  and it doesn't seem like gotestsum was found, maybe not installed.
+* TODO: try to use neotest with go-hello, dig into those two errors
 * IN PROGRESS: Setup nvim-neotest with nvim-neotest-go, possibly add gotestsum?
 
 ### 2025-11-28 -- Focus on go-lang setup
