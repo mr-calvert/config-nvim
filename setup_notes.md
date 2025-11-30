@@ -22,7 +22,8 @@ Currently I'm leaning on homebrew on Macs for tooling management. We'll see how 
 * python
 * Give some love to the key bindings. I like [leader][functional area][specific function] as a pattern. Testing under
   [leader]t is ok, but there's a bunch of cruft rn. [leader]s is good. gr? for LSP stuff makes no sense.
-* For the go-lang config, where the heck is delve coming from??
+* `delve` = go-lang debugger is currently installed via mason in `~/.config/nvim/lua/kickstart/plugins/debug.lua`, try
+  to remove it and install via homebrew
 
 # Setup by topic/language
 ## Initial installation
@@ -53,8 +54,24 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
 * TODO: configure easy go fmt, lint, any other tools?
 * TODO: plumb the depths of gopls support, especially interaction with telescope, refactorings, compile errors in quickfix?
 
+# zig setup
+* `brew install zig zls`
+* `brew install tree-sitter-cli` -- zig's treesitter grammar isn't precompiled
+* In nvim `:TSInstall zig`
+
 # Setup effort notes by date
-### 2025-11-29 -- Continue focus on go-lang setup, then rust then zig in preparation for Advent of Code in nvim
+
+## 2025-11-29
+### Setup Zig support
+* Personal laptop already has zig and zls installed via homebrew
+* Looking into the new version of nvim-treesitter, the new version's setup is a lot different. I tried to adjust to the
+  new setup stuff, but no I couldn't get it to even attempt to install zig. Not sure if I'm not getting the Lazy stuff
+  right, or if the nvim-treesitter stuff is wrong. So I tried :TSInstall zig, and that failed. It seems for zig we need
+  to build the grammar, but treesitter cli is not installed.
+* Couldn't figure out how to get treesitter to auto install parsers from the configuration. I'm curious what it does on
+  a new installation. Timeboxing this effort and just planning on :TSInstall zig
+
+### Continue focus on go-lang setup
 * Created .editorconfig and enabled Editorconfig support in nvim. Intention is to have it setup in dotfiles when I get around to that part of my setup.
 * neotest configuration can definitely go to insane depths: (neotest author's go-lang configs)[https://fredrikaverpil.github.io/neotest-golang/recipes/#per-project-configuration]
 * neotest-golang asks to be run against the `main` branch of nvim-treesitter. Google's AI seems to think that
@@ -72,20 +89,20 @@ like `master` is checked out.
 * First pass at neotest setup with nvim-neotest-go and gotestsum. There was an error related to nvim-treesitter.configs,
   and it doesn't seem like gotestsum was found, maybe not installed.
 
-### 2025-11-28 -- Focus on go-lang setup
+## 2025-11-28 -- Focus on go-lang setup
 * A bit of research into nvim roadmap. Builtin lsp integration is coming in 0.12.x, but stable is 11.5.x, so the kickstart lsp stuff is still fully relevant.
 * Added go to lua/kickstart/plugins/treesitter.lua, played around with treesitter integration using fzf go source code. Need to come back to learn about folds and indenting features
 * Added gopls to `local servers` in `lspconfig.lua` and it just worked. There are some keybindings for LSP that are mostly off `gr`
 * Enabled DAP (debugger access protocol) by uncommenting the line enabling debug.lua. I wasn't able to get it running against fzf, but I built a hello world and the debugger worked. Lots to learn about DAP.
 * Looking for help running tests, DAP has support for debugging a test (which I haven't made work yet), but the real deal seems to be [neotest](https://github.com/nvim-neotest/neotest).
 
-### 2025-11-27
+## 2025-11-27
 * Nuked the old repository, forked again from (modular kickstart repo)[https://github.com/dam9000/kickstart-modular.nvim], and moved my notes, cheat sheet, and spelling config over.
 * Installed go with homebrew
 * Was struggling with todo comments, they just didn't seem to work when I typed things. I was typing "TODO" but it turns out that there has to be a trailing colon, so "TODO:" not "TODO".
 * I got thrown for a loop, wanted to do a live grep but I couldn't find it in the menu of options when I did "[leader]s" while editing this file. But then it was there when I was editing lua. I did find "[leader]sg" was live grep and I tried it inside this file and it worked. Not sure what's up.
 
-### 2025-11-26
+## 2025-11-26
 * Removed previous manual installation of zig and zls
 * Looking into version managers. There are a couple specific to zig, found `zigenv` and `zvm`, but both are zig specific and this is a common enough problem I'm hoping to just have one tool. Decided that I don't need that right now and am just going to use homebrew. Done.
 * I figured out why conditional spell checking wasn't working... I was setting `vim.opt_local.spell=false` when I meant true.
