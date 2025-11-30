@@ -29,18 +29,18 @@ Generally following (nvim's kickstart)[https://github.com/nvim-lua/kickstart.nvi
 * `brew install fd`
 Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing that it worked, but I'm not sure if I did anything to configure it
 * Nerd font -- Considered but wasn't sure how to do a full installation and decided to skip it for now; have installed nvim assuming no nerd font
-* Setup ssh key if it doesn't exist: `ssh-keygen -t ed25519 -C "scalvert@onepost.net"` [details in](#ssh-token-setup) -- replace email as appropriate 
+* Setup ssh key if it doesn't exist: `ssh-keygen -t ed25519 -C "scalvert@onepost.net"` [details in](#ssh-token-setup) -- replace email as appropriate
 * Clone [personal nvim repo](https://github.com/mr-calvert/nvim-config) into `~/.config/nvim`. Personal repo is a clone of (modularized kickstart)[https://github.com/dam9000/kickstart-modular.nvim]
 * Symlink `.editorconfig` from the root of the nvim directory up to `~/.config` so it rules over all .dotfiles. Symlink to `~/code` so it rules by default over all repos.
 
 #### ssh token setup
-- I set a passphrase 
+- I set a passphrase
 - Setup ~/.ssh/config to auto-load the key into MacOS's built-in ssh-agent per (github instructions)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent]
 - Added the key to the running ssh-agent and setup the passphrase in the apple keychain.
 
 # go-lang setup
 * `brew install go` on personal laptop
-* Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is fine for me, curious if that will cause problems with tooling. 
+* Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is fine for me, curious if that will cause problems with tooling.
 * TODO: install neotest, build up some decent key bindings
 * TODO: explore, and get baseline config for test execution integration, esp with quickfix (or trouble?) jump to failures
 * TODO: configure easy go fmt, lint, any other tools?
@@ -49,6 +49,20 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
 # Setup effort notes by date
 ### 2025-11-29 -- Continue focus on go-lang setup, then rust then zig in preparation for Advent of Code in nvim
 * Created .editorconfig and enabled Editorconfig support in nvim. Intention is to have it setup in dotfiles when I get around to that part of my setup.
+* neotest configuration can definitely go to insane depths: (neotest author's go-lang configs)[https://fredrikaverpil.github.io/neotest-golang/recipes/#per-project-configuration]
+* neotest-golang asks to be run against the `main` branch of nvim-treesitter. Google's AI seems to think that
+nvim-kickstart uses `main`, but when I checked the cloned repo at `~/.local/share/nvim/lazy/nvim-treesitter/` it looks
+like `master` is checked out.
+* Stopped and restarted vim and there was no sign of Lazy picking up the changes. So I ran :Lazy sync and it did a whole
+  lot of updates (oops?). The only change I noticed in :checkhealth before vs after was that the support matrix for
+  loaded languages for nvim-treesitter was empty post :Lazy sync. But vim-treesitter listed all the loaded plugins.
+  Syntax highlighting still works, but maybe when I enable others they'll not work? Maybe loading new parsers won't
+  work? The nvim-treesitter repo checked out in `~/.local/share/nvim/lazy/nvim-treesitter/` is detached HEAD, making me
+  think it merged master and main. Considering checking out main and restarting nvim, feels iffy. Post :Lazy sync
+  there's a runtime error when I open a path with backtick. This used to supply tab completion vs filesystem, now it
+  breaks.
+* Confirmed that LSP works for go-hello and DAP can step through prod side, tests obviously not.
+* IN PROGRESS: Setup nvim-neotest with nvim-neotest-go, possibly add gotestsum?
 
 ### 2025-11-28 -- Focus on go-lang setup
 * A bit of research into nvim roadmap. Builtin lsp integration is coming in 0.12.x, but stable is 11.5.x, so the kickstart lsp stuff is still fully relevant.
@@ -66,7 +80,7 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
 ### 2025-11-26
 * Removed previous manual installation of zig and zls
 * Looking into version managers. There are a couple specific to zig, found `zigenv` and `zvm`, but both are zig specific and this is a common enough problem I'm hoping to just have one tool. Decided that I don't need that right now and am just going to use homebrew. Done.
-* I figured out why conditional spell checking wasn't working... I was setting `vim.opt_local.spell=false` when I meant true. 
+* I figured out why conditional spell checking wasn't working... I was setting `vim.opt_local.spell=false` when I meant true.
 * Was about to start configuring zig tooling but I decided I'd rather use the modularized version of kickstart, one big file is a sad choice. Switching to the modular one is the next thing to do. Then setup zig tooling.
 
 ## 2025-11-19
