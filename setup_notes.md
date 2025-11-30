@@ -8,13 +8,21 @@ Initially at least I've taken the attitude that I don't want my editor (vscode, 
 
 Currently I'm leaning on homebrew on Macs for tooling management. We'll see how that goes.
 
-# TODO configurations, research, languages
+## Squawk Sheet
+* gotestsum didn't download/install
+* nvim-treesitter.configs not found error whenever nvim starts
+* error when typing a live file system path in backtics
+
+# TODO configurations, research, languages, puzzles
 * Zig
 * Rust
 * Folding configuration esp driven by treesitter
 * Configure nvim with a keymap to close a buffer without killing the window it's in to keep my window configuration
 * cpp
 * python
+* Give some love to the key bindings. I like [leader][functional area][specific function] as a pattern. Testing under
+  [leader]t is ok, but there's a bunch of cruft rn. [leader]s is good. gr? for LSP stuff makes no sense.
+* For the go-lang config, where the heck is delve coming from??
 
 # Setup by topic/language
 ## Initial installation
@@ -41,8 +49,7 @@ Symlink Clipboard command line tool for MacOS is pbcopy... I remember testing th
 # go-lang setup
 * `brew install go` on personal laptop
 * Leaving GOPATH and GOROOT unset right now because that's how homebrew left it. The GOPATH default is ~/go which is fine for me, curious if that will cause problems with tooling.
-* TODO: install neotest, build up some decent key bindings
-* TODO: explore, and get baseline config for test execution integration, esp with quickfix (or trouble?) jump to failures
+* TODO: figure out where delve is coming from
 * TODO: configure easy go fmt, lint, any other tools?
 * TODO: plumb the depths of gopls support, especially interaction with telescope, refactorings, compile errors in quickfix?
 
@@ -64,8 +71,6 @@ like `master` is checked out.
 * Confirmed that LSP works for go-hello and DAP can step through prod side, tests obviously not.
 * First pass at neotest setup with nvim-neotest-go and gotestsum. There was an error related to nvim-treesitter.configs,
   and it doesn't seem like gotestsum was found, maybe not installed.
-* TODO: try to use neotest with go-hello, dig into those two errors
-* IN PROGRESS: Setup nvim-neotest with nvim-neotest-go, possibly add gotestsum?
 
 ### 2025-11-28 -- Focus on go-lang setup
 * A bit of research into nvim roadmap. Builtin lsp integration is coming in 0.12.x, but stable is 11.5.x, so the kickstart lsp stuff is still fully relevant.
