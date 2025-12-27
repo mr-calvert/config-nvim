@@ -15,7 +15,6 @@ configuration.
 * rust-analyzer seems to require a save to update the parse, others didn't. Not sure why, but it's slightly annoying
 
 # TODO configurations, research, languages, puzzles
-* Try to deploy on work laptop
 * Configure nvim with a keymap to close a buffer without killing the window it's in to keep my window configuration
 * Autosave?
 * Give some love to the key bindings. I like [leader][functional area][specific function] as a pattern. Testing under
