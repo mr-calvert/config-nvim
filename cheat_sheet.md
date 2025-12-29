@@ -38,6 +38,7 @@ All are off <C-w>... so just start with it and use telescope
 | --- | --- |
 | grd | Goto definition |
 | gra | Goto code actions |
+| K | LSP hover |
 
 # DAP
 | keymap | description |
@@ -48,4 +49,4 @@ All are off <C-w>... so just start with it and use telescope
 | <F3> | Step Out |
 | <F7> | Tottle DAP UI on/off |
 | [leader]b | Create unconditional breakpoint at cursor |
-| 
+|
