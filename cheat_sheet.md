@@ -3,6 +3,7 @@
 | --- | --- |
 | <C-d> | Scroll half page down |
 | <C-u> | Scroll half page up |
+| <C-O> | Go back... previous entry in the jump list
 | <C-n> | Popup next selection |
 | <C-p> | Popup previous selection |
 | <C-y> | Popup accept current selection |
